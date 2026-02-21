@@ -201,8 +201,16 @@ const statusDiv=document.getElementById("status");
 const popup=document.getElementById("popup");
 const nameInput=document.getElementById("name");
 const dateInput=document.getElementById("date");
-const todayStr=new Date().toISOString().split("T")[0];
-dateInput.value=todayStr; dateInput.max=todayStr;
+// const todayStr=new Date().toISOString().split("T")[0];
+//dateInput.value=todayStr; dateInput.max=todayStr;
+// Erzeugt ein korrektes lokales ISO-Datum (YYYY-MM-DD) ohne UTC-Versatz
+const localNow = new Date();
+const year = localNow.getFullYear();
+const month = String(localNow.getMonth() + 1).padStart(2, '0');
+const day = String(localNow.getDate()).padStart(2, '0');
+const todayStr = `${year}-${month}-${day}`;
+dateInput.value = todayStr; 
+dateInput.max = todayStr;
 const gespeicherterName=localStorage.getItem("letzterName");
 if(gespeicherterName)nameInput.value=gespeicherterName;
 window.kmData=[];
